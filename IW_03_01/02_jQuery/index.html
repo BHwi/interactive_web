@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button id="hello">Hello Codeit!</button>
+	
+	<ul id="todo-list">
+		<li class="item">청소</li>
+		<li class="item">코딩</li>
+		<li class="item">숙제</li>
+		<li class="item">영화</li>
+	</ul>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous">
+	</script>
+	<script>
+		$('#hello').on('click', sayHello);
+
+		function sayHello() {
+			alert($('#hello').text());
+			$('#hello').css('background', '#7f8ff4');
+		}
+	</script>
+</body>
+</html>
