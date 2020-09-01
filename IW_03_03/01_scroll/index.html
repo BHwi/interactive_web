@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scroll Test</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+	<div id="top">
+		Fade away...
+	</div>
+
+	<button class="go-to-top">Go To Top</button>
+	<script type="text/javascript">
+		var button = document.getElementsByClassName("go-to-top")[0];
+
+		document.addEventListener('scroll', barScroll);
+		button.addEventListener('click', buttonClick);
+
+		function barScroll() {
+			var top = document.getElementById("top");
+			top.style.opacity = 1 - window.scrollY / top.clientHeight;
+		}
+
+		function buttonClick() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+	</script>
+</body>
+</html>
