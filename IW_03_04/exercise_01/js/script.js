@@ -5,6 +5,7 @@ var contactBtn = document.getElementById('contact-btn');
 var header = document.getElementsByClassName('header')[0];
 var about = document.getElementsByClassName('about')[0];
 var text = document.getElementsByClassName('vertical-center');
+var innerBar = document.getElementsByClassName('inner-bar');
 
 document.addEventListener('scroll', navbarChange);
 document.addEventListener('scroll', textAnimation);
@@ -49,6 +50,7 @@ function textAnimation() {
 		if(texttmp[1] == 0) {
 			fadeIn(text[1]);
 			divIncrease(text[1]);
+			fillBar();
 			texttmp[1] = 1;
 		}
 	} else if(isChange() == 2) {
@@ -60,6 +62,7 @@ function textAnimation() {
 		if(texttmp[1] == 0) {
 			fadeIn(text[1]);
 			divIncrease(text[1]);
+			fillBar();
 			texttmp[1] = 1;
 		}
 		if(texttmp[2] == 0) {
@@ -98,7 +101,6 @@ function moveDiv(target) {
 	var time = Date.now();
 	var nowLocation = window.pageYOffset;
 	var changeY = (target - nowLocation) / 50;
-	console.log("now : " + nowLocation + " changeY : " + changeY + " target : " + target);
 
 	if(nowLocation <= target){
 		(function move() {
@@ -135,7 +137,6 @@ function fadeIn(targetDiv) {
 }
 
 function divIncrease(targetDiv) {
-	console.log(targetDiv.offsetHeight);
 	targetDiv.style.top = '100px';
 	value = 100;
 	targetDiv.style.top = '0px';
@@ -143,6 +144,26 @@ function divIncrease(targetDiv) {
 		if((value -= 2) > 0) {
 			targetDiv.style.top = value + 'px';
 			requestAnimationFrame(up);
+		}
+	})();
+}
+
+function fillBar() {
+	var percent = [0.9, 0.9, 0.85, 0.75, 0.7, 0.9];
+	var width = document.getElementsByClassName('bar')[0].offsetWidth;
+
+	for(var i = 0; i < innerBar.length; i++) {		
+		fillDiv(innerBar[i], percent[i], width * percent[i]);
+	}
+}
+
+function fillDiv(targetDiv, percent, finalWidth) {
+	targetDiv.style.width = '0px';
+	var value = 0;
+	(function fill() {
+		if((value += percent * 15) <= finalWidth) {
+			targetDiv.style.width = value + 'px';
+			requestAnimationFrame(fill);
 		}
 	})();
 }
